@@ -1,0 +1,47 @@
+{
+  "name": "@tanishq03/myclaude",
+  "version": "0.7.0",
+  "description": "A Claude Code-style terminal agent built on the Claude Agent SDK, billed to your Claude Console API key",
+  "keywords": [
+    "claude",
+    "agent",
+    "cli",
+    "anthropic",
+    "claude-agent-sdk",
+    "terminal"
+  ],
+  "author": "Xenocipher",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "myclaude": "dist/myclaude.js"
+  },
+  "files": [
+    "dist/myclaude.js",
+    "skills"
+  ],
+  "scripts": {
+    "build": "esbuild src/main.jsx --bundle --platform=node --format=esm --packages=external --jsx=automatic --outfile=dist/myclaude.js --banner:js=\"#!/usr/bin/env node\"",
+    "prepare": "npm run build",
+    "test": "esbuild test/ui-smoke.jsx --bundle --platform=node --format=esm --packages=external --jsx=automatic --outfile=dist/ui-smoke.mjs --log-level=warning && node dist/ui-smoke.mjs",
+    "test:pty": "node test/pty.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.299",
+    "ink": "^8.0.0",
+    "marked": "^15.0.12",
+    "marked-terminal": "^7.3.0",
+    "react": "^19.3.1"
+  },
+  "devDependencies": {
+    "@lydell/node-pty": "^1.2.0-beta.15",
+    "@xterm/headless": "^6.0.0",
+    "esbuild": "^0.28.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
